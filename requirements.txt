@@ -1,0 +1,6 @@
+mock
+flask
+requests
+pytest
+pytest-html
+requests_cache

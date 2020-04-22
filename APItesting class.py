@@ -1,0 +1,53 @@
+import unittest
+import json
+import flask
+from API import BaseAPI
+import API
+import app
+import requests
+
+from DataBase import OfflineData
+class TestAPI(unittest.TestCase):
+#only in online scenario
+    def test_info_BaseAPI(self):
+        baseAPI = BaseAPI()
+        result=baseAPI.get_country_info("Egypt")
+        result2=result['name']
+        self.assertEqual(result2,"Egypt")
+    def test_info_BaseAPI2(self):
+        baseAPI = BaseAPI()
+        result=baseAPI.get_country_info("Cairo")
+        if result=="Not Found":
+            self.assertEqual(result,"Not Found")
+    #offline functions from class DataBase
+    def test_GetData(self):
+        offline=OfflineData()
+        result=offline.GetData("Egypt")
+        result2=result['name']
+        self.assertEqual(result2,"Egypt")
+
+    #Some Test Functions
+    def test_getSpecificData(self):
+        string="capital,population,area"
+        result=app.GetSpecificInfo(string,"Egypt")
+        self.assertEqual(" area= 1002450.0 population= 91290000 capital= Cairo    ",result)
+    def test_getSpecificData2(self):
+        string="captiall"
+        result=app.GetSpecificInfo(string,"Egypt")
+        self.assertEqual("invalid key",result)
+    def test_Connection(self): #in online mode only
+        self.assertTrue(app.CheckInternetConnection())
+    def test_Connection2(self): #in offline mode only
+        self.assertFalse(app.CheckInternetConnection())
+    def test_APP_gettingdatafn(self): #integration test
+        result=app.gettingInfo("egypt")
+        actual=result['name']
+        self.assertEqual("Egypt",actual)
+    """
+    def testCash(self):
+        result=app.gettingInfo("egypt")
+        self.assertEqual(respone.)
+"""
+
+if __name__ == '__main__':
+    unittest.main()
