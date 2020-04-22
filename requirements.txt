@@ -1,6 +1,6 @@
 mock
 flask
 requests
-pytest == 5.0
+pytest == 7.0
 pytest-html
 requests_cache
