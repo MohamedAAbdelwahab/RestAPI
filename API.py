@@ -2,7 +2,7 @@ import json
 
 import requests
 import time
-import request_cache
+import requests_cache
 
 requests_cache.install_cache(cache_name='My_cache', backend='sqlite', expire_after=10)
 
