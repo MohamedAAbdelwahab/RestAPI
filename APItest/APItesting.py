@@ -6,6 +6,12 @@ from DataBase import OfflineData
 
 
 class TestAPI(unittest.TestCase):
+    # only in online scenario
+    def test_info_BaseAPI(self):
+        baseAPI = BaseAPI()
+        result = baseAPI.get_country_info("Egypt")
+        result2 = result['name']
+        self.assertEqual(result2, "Egypt")
     def test_info_BaseAPI2(self):
         baseAPI = BaseAPI()
         result=baseAPI.get_country_info("Cairo")

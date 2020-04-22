@@ -13,18 +13,12 @@ jobs:
       - python/save-cache
       - run:
           name: Run unit Tests
-          command: python -m pytest ./APItest/APItesting.py --junitxml=test-reports1/junit.xml --html=test-reports1/pytest_report.html --self-contained-html
-      - store_test_results:
-          path: test-reports1
-      - store_artifacts:
-          path: test-reports1
-      - run:
-          name: t2
-          command: python -m pytest ./APItest/tes.py --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
+          command: python -m pytest ./APItest/APItesting.py --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
       - store_test_results:
           path: test-reports
       - store_artifacts:
           path: test-reports
+
 
 workflows:
   main:
