@@ -36,7 +36,7 @@ class TestAPI(unittest.TestCase):
     def test_Connection(self): #in online mode only
         self.assertTrue(app.CheckInternetConnection())
     def test_Connection2(self): #in offline mode only
-        self.assertFalse(app.CheckInternetConnection())
+        self.assertTrue(app.CheckInternetConnection())
     def test_APP_gettingdatafn(self): #integration test
         result=app.gettingInfo("egypt")
         actual=result['name']
