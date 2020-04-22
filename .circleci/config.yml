@@ -13,7 +13,7 @@ jobs:
       - python/save-cache
       - run:
           name: Run unit Tests
-          command: pytest
+          command: python -m pytest ./APItest/APItesting.py
       - store_test_results:
           path: test-reports
       - store_artifacts:
