@@ -1,6 +1,6 @@
 mock
 flask
 requests
-pytest
+py.test
 pytest-html
 requests_cache
