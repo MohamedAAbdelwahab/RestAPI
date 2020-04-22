@@ -1,15 +1,17 @@
 import unittest
 
+import requests_cache
+from mock import patch, Mock
 import app
 from API import BaseAPI
 from DataBase import OfflineData
 
-
 class TestAPI(unittest.TestCase):
+
     # only in online scenario
     def test_info_BaseAPI(self):
         baseAPI = BaseAPI()
-        result = baseAPI.get_country_info("Egypt")
+        result,temp = baseAPI.get_country_info("Egypt")
         result2 = result['name']
         self.assertEqual(result2, "Egypt")
     def test_info_BaseAPI2(self):
@@ -38,11 +40,14 @@ class TestAPI(unittest.TestCase):
     def test_Connection2(self): #in offline mode only
         self.assertTrue(app.CheckInternetConnection())
     def test_APP_gettingdatafn(self): #integration test
-        result=app.gettingInfo("egypt")
+        result,temp=app.gettingInfo("egypt")
         actual=result['name']
         self.assertEqual("Egypt",actual)
-    """
-    def testCash(self):
-        result=app.gettingInfo("egypt")
-        self.assertEqual(respone.)
-"""
+
+    def testForFalseCash(self):
+        result,temp = app.gettingInfo("egypt")
+        self.assertFalse(temp)
+    def testForTrueCash(self):
+        result,temp=app.gettingInfo("egypt")
+        self.assertTrue(temp)
+        requests_cache.clear()

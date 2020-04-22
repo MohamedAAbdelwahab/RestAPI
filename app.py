@@ -7,7 +7,7 @@ from DataBase import OfflineData
 import requests_cache
 
 app = flask.Flask(__name__)
-
+app.debug = True
 
 
 @app.route('/', methods=["GET"])
@@ -19,10 +19,9 @@ def home():
          "for more than one info please type  localhost:5000/ then add the country name then / and here add your specific info , the second info"
 @app.route('/<country>')
 def ALLInfo(country=None):
-        countryInfo=gettingInfo(country)
+        countryInfo,temp=gettingInfo(country)
         if countryInfo is not None:
             return str(countryInfo)
-            print("ana hnaaa")
         else:
              return ("Not Found")
 
@@ -30,7 +29,7 @@ def ALLInfo(country=None):
 def GetSpecificInfo(varargs=None,country=None):
     varargs = varargs.split(",")
     string=" "
-    countryInfo = gettingInfo(country)
+    countryInfo,temp = gettingInfo(country)
     if countryInfo=="Not Found":
       return "Not Found"
     try:
@@ -52,15 +51,15 @@ def gettingInfo(country):
     baseAPI = BaseAPI()
     country = country
     if CheckInternetConnection():
-        countryInfo = baseAPI.get_country_info(country)
+        countryInfo, temp = baseAPI.get_country_info(country)
 
     else:
         o = OfflineData()
         countryInfo = o.GetData(country)
-    return countryInfo
+    return countryInfo,temp
 
 
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

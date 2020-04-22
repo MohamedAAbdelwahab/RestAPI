@@ -4,7 +4,7 @@ import requests
 import time
 import requests_cache
 
-requests_cache.install_cache(cache_name='My_cache', backend='sqlite', expire_after=10)
+requests_cache.install_cache(cache_name='My_cache' ,backend='sqlite', expire_after=30)
 
 
 class BaseAPI:
@@ -19,9 +19,7 @@ class BaseAPI:
 
         response = requests.get(api_url)
 
-
-
         if response.status_code == 200:
-            return json.loads(response.content)[0]
+            return json.loads(response.content)[0], response.from_cache
         else:
             return "Not Found"
