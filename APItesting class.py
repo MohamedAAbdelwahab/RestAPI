@@ -1,13 +1,10 @@
 import unittest
-import json
-import flask
-from API import BaseAPI
-import API
+
 import app
-import requests
-
-
+from API import BaseAPI
 from DataBase import OfflineData
+
+
 class TestAPI(unittest.TestCase):
 #only in online scenario
     def test_info_BaseAPI(self):
@@ -49,6 +46,3 @@ class TestAPI(unittest.TestCase):
         result=app.gettingInfo("egypt")
         self.assertEqual(respone.)
 """
-
-if __name__ == '__main__':
-    unittest.main()
