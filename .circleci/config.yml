@@ -23,8 +23,12 @@ jobs:
           name: Run Tests
           command: 
                   python -m coverage run -m pytest ./APItest/APItesting.py
+      - run:
+          name: Run Tests2
           command:
                   python -m coverage report
+      - run:
+          name: Run Tests3
           command:
                   pythob -m coverage html  # open htmlcov/index.html in a browser
       - store_artifacts:
