@@ -11,11 +11,7 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run:
-          name: Setup testing environment
-          command: 
-            pip install '.[test]' --user
-            echo $HOME
+      
       - run:
           name: Run unit Tests
           command: python -m pytest ./APItest/APItesting.py --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
@@ -26,9 +22,9 @@ jobs:
       - run:
           name: Run Tests
           command: 
-                    coverage run -m pytest ./APItest/APItesting.py
-                    coverage report
-                    coverage html  # open htmlcov/index.html in a browser
+                  $HOME/.local/bin/coverage run -m pytest ./APItest/APItesting.py
+                  $HOME/.local/bin/coverage report
+                  $HOME/.local/bin/coverage html  # open htmlcov/index.html in a browser
       - store_artifacts:
           path: htmlcov
 
