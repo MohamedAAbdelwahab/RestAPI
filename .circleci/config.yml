@@ -12,6 +12,11 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
+        name: Setup testing environment
+        command: |
+          pip install '.[test]' --user
+          echo $HOME
+      - run:
           name: Run unit Tests
           command: python -m pytest ./APItest/APItesting.py --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
       - store_test_results:
