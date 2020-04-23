@@ -43,6 +43,8 @@ class TestAPI(unittest.TestCase):
         result,temp=app.gettingInfo("egypt")
         actual=result['name']
         self.assertEqual("Egypt",actual)
+        requests_cache.clear()
+
 
     def testForFalseCash(self):
         result,temp = app.gettingInfo("egypt")
