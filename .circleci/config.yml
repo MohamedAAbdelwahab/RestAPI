@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Run Tests3
           command:
-                  pythob -m coverage html  # open htmlcov/index.html in a browser
+                  python -m coverage html  # open htmlcov/index.html in a browser
       - store_artifacts:
           path: htmlcov
 
