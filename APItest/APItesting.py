@@ -53,7 +53,7 @@ class TestAPI(unittest.TestCase):
         result,temp=app.gettingInfo("egypt")
         self.assertTrue(temp)
         requests_cache.clear()
-        def test_offlineGetDataFail(self):
+    def test_offlineGetDataFail(self):
         offline = OfflineData()
         result = offline.GetData("cairo")
         result2 = None
